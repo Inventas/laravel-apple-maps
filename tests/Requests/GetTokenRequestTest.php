@@ -3,17 +3,24 @@
 use Inventas\AppleMaps\AppleMapsConnector;
 use Inventas\AppleMaps\Common\TokenResponse;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
 
 test('get token', function () {
+
+    $mockClient = new MockClient([
+        GetMapsAccessTokenRequest::class => MockResponse::fixture('token'),
+    ]);
+
     $connector = new AppleMapsConnector();
+    $connector->withMockClient($mockClient);
     $request = new GetMapsAccessTokenRequest();
     $response = $connector->send($request);
 
-    $accessToken = $response->json('accessToken');
-    $expiresInSeconds = $response->json('expiresInSeconds');
+    $accessTokenResponse = $response->dto();
 
-    expect($accessToken)->toBeString()->not()->toBeEmpty()
-        ->and($expiresInSeconds)->toBeInt()->toBe(1800)
-        ->and($response->dto())->toBeInstanceOf(TokenResponse::class);
+    expect($accessTokenResponse)->toBeInstanceOf(TokenResponse::class)
+        ->and($accessTokenResponse)->accessToken->toBeString()->not()->toBeEmpty()
+        ->and($accessTokenResponse)->expiresInSeconds->toBeInt()->toBe(1800);
 
 });

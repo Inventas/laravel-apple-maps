@@ -2,23 +2,29 @@
 
 use Inventas\AppleMaps\AppleMapsConnector;
 use Inventas\AppleMaps\Common\SearchLocation;
+use Inventas\AppleMaps\Requests\GeocodeRequest;
+use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Inventas\AppleMaps\Requests\ReverseGeocodeRequest;
+use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
-use Saloon\Laravel\Facades\Saloon;
 
 test('it can geocode an address', function () {
 
-    Saloon::fake([
-        MockResponse::fixture('geocode.berlin'),
+    $mockClient = new MockClient([
+        GetMapsAccessTokenRequest::class => MockResponse::fixture('reverse-geocode.berlin.token'),
+        ReverseGeocodeRequest::class => MockResponse::fixture('reverse-geocode.berlin'),
     ]);
 
     $connector = new AppleMapsConnector();
+    $connector->withMockClient($mockClient);
     $request = new ReverseGeocodeRequest(
         location: new SearchLocation(latitude: 52.51626, longitude: 13.37721),
         language: 'de-DE',
     );
 
-    $response = $connector->send($request);
+//    dd($mockClient);
+
+    $response = $connector->send($request, $mockClient);
 
     expect($response->status())->toBe(200);
 

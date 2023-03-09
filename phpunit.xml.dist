@@ -34,6 +34,7 @@
         <junit outputFile="build/report.junit.xml"/>
     </logging>
     <php>
+        <env name="XDEBUG_MODE" value="coverage" />
         <env name="APPLE_MAPS_TEAM_ID" value=""/>
         <env name="APPLE_MAPS_KEY_ID" value=""/>
         <env name="APPLE_MAPS_PRIVATE_KEY" value=""/>
