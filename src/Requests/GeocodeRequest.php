@@ -2,8 +2,8 @@
 
 namespace Inventas\AppleMaps\Requests;
 
+use Inventas\AppleMaps\Common\GeocodeQuery;
 use Inventas\AppleMaps\Common\PlaceResults;
-use Inventas\AppleMaps\Common\SearchLocation;
 use Saloon\Contracts\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -12,31 +12,12 @@ class GeocodeRequest extends Request
 {
     protected Method $method = Method::GET;
 
-    /**
-     * @var string (Required) The address to geocode.
-     * For example: q=1 Apple Park, Cupertino, CA
-     */
-    public string $q;
-
-    public array $limitToCountries = [];
-
-    /**
-     * @var string The language the server should use when returning the response,
-     * specified using a BCP 47 language code. For example, for English use lang=en-US.
-     * Default: en-US
-     */
-    public string $lang = 'en-US';
-
-    public ?SearchLocation $searchLocation;
+    protected GeocodeQuery $geocodeQuery;
 
     public function __construct(
-        string $q,
-        string $lang = 'en-US',
-        ?SearchLocation $searchLocation = null,
+        GeocodeQuery $query
     ) {
-        $this->q = $q;
-        $this->lang = $lang;
-        $this->searchLocation = $searchLocation;
+        $this->geocodeQuery = $query;
     }
 
     public function resolveEndpoint(): string
@@ -46,11 +27,7 @@ class GeocodeRequest extends Request
 
     protected function defaultQuery(): array
     {
-        return array_filter([
-            'q' => $this->q,
-            'lang' => $this->lang,
-            'searchLocation' => $this->searchLocation ? (string) $this->searchLocation : null,
-        ], fn ($value) => ! is_null($value));
+        return $this->geocodeQuery->toQuery();
     }
 
     public function createDtoFromResponse(Response $response): PlaceResults

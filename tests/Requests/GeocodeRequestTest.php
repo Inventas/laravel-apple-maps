@@ -1,6 +1,7 @@
 <?php
 
 use Inventas\AppleMaps\AppleMapsConnector;
+use Inventas\AppleMaps\Common\GeocodeQuery;
 use Inventas\AppleMaps\Common\PlaceResults;
 use Inventas\AppleMaps\Requests\GeocodeRequest;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
@@ -17,8 +18,10 @@ test('it can geocode an address', function () {
     $connector = new AppleMapsConnector();
     $connector->withMockClient($mockClient);
     $request = new GeocodeRequest(
-        q: 'Pariser Platz 8, 10117 Berlin Deutschland',
-        lang: 'de-DE',
+        new GeocodeQuery(
+            q: 'Pariser Platz 8, 10117 Berlin Deutschland',
+            lang: 'de-DE',
+        )
     );
 
     $response = $connector->send($request);
