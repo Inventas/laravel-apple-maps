@@ -37,6 +37,5 @@ return [
     */
     'private_key' => env('APPLE_MAPS_PRIVATE_KEY'),
 
-
-    'api_middleware' => 'api'
+    'api_middleware' => 'api',
 ];

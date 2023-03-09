@@ -9,13 +9,11 @@ use Inventas\AppleMaps\Facades\AppleMaps;
 
 class AppleMapsController extends Controller
 {
-
-    public function token(): JsonResponse {
-
+    public function token(): JsonResponse
+    {
         /** @var TokenResponse $tokenResponse */
         $tokenResponse = AppleMaps::getToken();
 
         return new JsonResponse($tokenResponse->toArray(), 200);
     }
-
 }

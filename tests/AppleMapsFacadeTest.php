@@ -3,7 +3,6 @@
 use Inventas\AppleMaps\Facades\AppleMaps;
 
 it('generates a token', function () {
-
     $token = AppleMaps::getToken();
     $accessToken = $token->accessToken;
 
@@ -12,5 +11,4 @@ it('generates a token', function () {
         ->toBeString()
         ->and($accessToken)
         ->not()->toBeEmpty();
-
 });

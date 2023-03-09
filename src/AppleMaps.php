@@ -32,7 +32,6 @@ class AppleMaps
      */
     public function getToken(): TokenResponse
     {
-
         return Cache::remember('apple-maps-token', 30, function () {
             return $this->getNewToken();
         });
@@ -83,5 +82,4 @@ class AppleMaps
 
         return $results;
     }
-
 }

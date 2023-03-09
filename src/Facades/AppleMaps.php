@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @mixin \Inventas\AppleMaps\AppleMaps
+ *
  * @see \Inventas\AppleMaps\AppleMaps
  */
 class AppleMaps extends Facade
