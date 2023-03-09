@@ -24,7 +24,8 @@ class GeocodeQuery extends Data
         $this->lang = $lang;
     }
 
-    public function toQuery(): array {
+    public function toQuery(): array
+    {
         return array_filter([
             'q' => $this->q,
             'lang' => $this->lang,
