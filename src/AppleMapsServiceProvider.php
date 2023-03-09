@@ -2,9 +2,9 @@
 
 namespace Inventas\AppleMaps;
 
+use Inventas\AppleMaps\Commands\AppleMapsCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Inventas\AppleMaps\Commands\AppleMapsCommand;
 
 class AppleMapsServiceProvider extends PackageServiceProvider
 {

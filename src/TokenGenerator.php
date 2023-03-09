@@ -12,15 +12,12 @@ use Lcobucci\JWT\UnencryptedToken;
 
 class TokenGenerator
 {
-
     public function issue(
         string $keyIdentifier,
         string $issuer,
         string $privateKey,
         ?string $origin = null
-    ): UnencryptedToken
-    {
-
+    ): UnencryptedToken {
         $privateKey = str_replace('\\n', "\n", $privateKey);
 
         $key = InMemory::plainText($privateKey);
@@ -33,9 +30,9 @@ class TokenGenerator
                 DateTimeImmutable $issuedAt
             ): Builder => $builder
                 ->issuedBy($issuer)
-                ->withHeader("alg", "ES256")
-                ->withHeader("kid", $keyIdentifier)
-                ->withHeader("typ", "JWT")
+                ->withHeader('alg', 'ES256')
+                ->withHeader('kid', $keyIdentifier)
+                ->withHeader('typ', 'JWT')
                 ->expiresAt($issuedAt->modify('+30 minutes'))
         );
     }
@@ -52,8 +49,8 @@ class TokenGenerator
                 issuer: $issuerIdentifier,
                 privateKey: $privateKey,
             );
+
             return $token->toString();
         });
     }
-
 }

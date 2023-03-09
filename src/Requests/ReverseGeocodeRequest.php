@@ -20,7 +20,7 @@ class ReverseGeocodeRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/reverseGeocode";
+        return '/v1/reverseGeocode';
     }
 
     protected function defaultQuery(): array

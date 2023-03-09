@@ -8,12 +8,9 @@ use Spatie\LaravelData\DataCollection;
 
 class PlaceResults extends Data
 {
-
     public function __construct(
         #[DataCollectionOf(Place::class)]
         public DataCollection $results,
     ) {
-
     }
-
 }

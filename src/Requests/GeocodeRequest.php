@@ -50,7 +50,7 @@ class GeocodeRequest extends Request
             'q' => $this->q,
             'lang' => $this->lang,
             'searchLocation' => $this->searchLocation ? (string) $this->searchLocation : null,
-        ], fn ($value) => !is_null($value));
+        ], fn ($value) => ! is_null($value));
     }
 
     public function createDtoFromResponse(Response $response): PlaceResults

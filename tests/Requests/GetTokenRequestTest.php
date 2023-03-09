@@ -7,7 +7,6 @@ use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
 test('get token', function () {
-
     $mockClient = new MockClient([
         GetMapsAccessTokenRequest::class => MockResponse::fixture('token'),
     ]);
@@ -22,5 +21,4 @@ test('get token', function () {
     expect($accessTokenResponse)->toBeInstanceOf(TokenResponse::class)
         ->and($accessTokenResponse)->accessToken->toBeString()->not()->toBeEmpty()
         ->and($accessTokenResponse)->expiresInSeconds->toBeInt()->toBe(1800);
-
 });

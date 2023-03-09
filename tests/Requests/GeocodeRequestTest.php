@@ -9,7 +9,6 @@ use Saloon\Http\Faking\MockResponse;
 use Spatie\LaravelData\DataCollection;
 
 test('it can geocode an address', function () {
-
     $mockClient = new MockClient([
         GetMapsAccessTokenRequest::class => MockResponse::fixture('geocode.berlin.token'),
         GeocodeRequest::class => MockResponse::fixture('geocode.berlin'),

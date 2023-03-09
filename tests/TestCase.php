@@ -3,8 +3,8 @@
 namespace Inventas\AppleMaps\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Inventas\AppleMaps\AppleMapsServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra

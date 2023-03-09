@@ -9,7 +9,7 @@ class AppleMapsConnector extends Connector
 {
     public function resolveBaseUrl(): string
     {
-        return "https://maps-api.apple.com/";
+        return 'https://maps-api.apple.com/';
     }
 
     protected function defaultHeaders(): array

@@ -22,7 +22,8 @@ class AppleMapsAuthenticator implements Authenticator
         $token = Cache::get(self::KEY);
 
         if ($token) {
-            $pendingRequest->headers()->add('Authorization', 'Bearer ' . $token);
+            $pendingRequest->headers()->add('Authorization', 'Bearer '.$token);
+
             return;
         }
 
@@ -34,6 +35,6 @@ class AppleMapsAuthenticator implements Authenticator
         Cache::put(self::KEY, $accessToken, $expiresInSeconds);
 
         // Finally, authenticate the previous PendingRequest before it is sent.
-        $pendingRequest->headers()->add('Authorization', 'Bearer ' . $accessToken);
+        $pendingRequest->headers()->add('Authorization', 'Bearer '.$accessToken);
     }
 }

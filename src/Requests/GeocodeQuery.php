@@ -6,8 +6,8 @@ use Inventas\AppleMaps\Common\SearchLocation;
 use Inventas\AppleMaps\Common\SearchRegion;
 use Spatie\LaravelData\Data;
 
-class GeocodeQuery extends Data {
-
+class GeocodeQuery extends Data
+{
     public function __construct(
         public string $q,
         public array $limitToCountries = [],
@@ -17,5 +17,4 @@ class GeocodeQuery extends Data {
         public ?SearchLocation $userLocation = null,
     ) {
     }
-
 }

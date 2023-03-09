@@ -223,5 +223,4 @@ enum PoiCategory: string
      * A zoo.
      */
     case Zoo = 'Zoo';
-
 }

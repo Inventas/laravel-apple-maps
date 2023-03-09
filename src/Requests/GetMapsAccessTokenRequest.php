@@ -10,12 +10,11 @@ use Saloon\Http\Request;
 
 class GetMapsAccessTokenRequest extends Request
 {
-
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
-        return "/v1/token";
+        return '/v1/token';
     }
 
     protected function defaultHeaders(): array
@@ -23,7 +22,7 @@ class GetMapsAccessTokenRequest extends Request
         $token = (new TokenGenerator())->token();
 
         return [
-            "Authorization" => "Bearer $token"
+            'Authorization' => "Bearer $token",
         ];
     }
 
