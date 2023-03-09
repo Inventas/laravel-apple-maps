@@ -17,9 +17,19 @@ class AppleMapsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-apple-maps')
+            ->hasRoute('api')
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_laravel-apple-maps_table')
             ->hasCommand(AppleMapsCommand::class);
+    }
+
+    public function registeringPackage()
+    {
+        parent::registeringPackage();
+
+        $this->app->bind('apple-maps', function () {
+            return new AppleMaps();
+        });
     }
 }
