@@ -48,4 +48,8 @@ jobs:
         run: composer show -D
 
       - name: Execute tests
+        env:
+          APPLE_MAPS_TEAM_ID: ${{ secrets.APPLE_MAPS_TEAM_ID }}
+          APPLE_MAPS_KEY_ID: ${{ secrets.APPLE_MAPS_KEY_ID }}
+          APPLE_MAPS_PRIVATE_KEY: ${{ secrets.APPLE_MAPS_PRIVATE_KEY }}
         run: vendor/bin/pest
