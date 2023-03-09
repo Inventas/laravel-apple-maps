@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="VendorName Test Suite">
+        <testsuite name="Inventas Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
@@ -33,4 +33,9 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name="APPLE_MAPS_TEAM_ID" value=""/>
+        <env name="APPLE_MAPS_KEY_ID" value=""/>
+        <env name="APPLE_MAPS_PRIVATE_KEY" value=""/>
+    </php>
 </phpunit>

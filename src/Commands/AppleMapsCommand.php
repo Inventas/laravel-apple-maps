@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Inventas\AppleMaps\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class AppleMapsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-apple-maps';
 
     public $description = 'My command';
 
