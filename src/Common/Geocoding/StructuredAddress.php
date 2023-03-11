@@ -1,6 +1,6 @@
 <?php
 
-namespace Inventas\AppleMaps\Common;
+namespace Inventas\AppleMaps\Common\Geocoding;
 
 use Spatie\LaravelData\Data;
 
@@ -10,13 +10,13 @@ class StructuredAddress extends Data
         public ?string $administrativeArea,
         public ?string $administrativeAreaCode,
         public ?array $areasOfInterest,
-        public array $dependentLocalities,
-        public string $fullThoroughfare,
+        public ?array $dependentLocalities,
+        public ?string $fullThoroughfare,
         public string $locality,
-        public string $postCode,
-        public string $subLocality,
-        public string $subThoroughfare,
-        public string $thoroughfare,
+        public ?string $postCode,
+        public ?string $subLocality,
+        public ?string $subThoroughfare,
+        public ?string $thoroughfare,
     ) {
     }
 }

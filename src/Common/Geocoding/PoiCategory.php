@@ -1,6 +1,6 @@
 <?php
 
-namespace Inventas\AppleMaps\Common;
+namespace Inventas\AppleMaps\Common\Geocoding;
 
 enum PoiCategory: string
 {

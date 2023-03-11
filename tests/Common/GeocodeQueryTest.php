@@ -1,8 +1,8 @@
 <?php
 
-use Inventas\AppleMaps\Common\GeocodeQuery;
-use Inventas\AppleMaps\Common\SearchLocation;
-use Inventas\AppleMaps\Common\SearchRegion;
+use Inventas\AppleMaps\Common\Geocoding\GeocodeQuery;
+use Inventas\AppleMaps\Common\Geocoding\SearchLocation;
+use Inventas\AppleMaps\Common\Geocoding\SearchRegion;
 
 it('encodes query (q with lang)', function () {
     $query = new GeocodeQuery(

@@ -1,7 +1,7 @@
 <?php
 
 use Inventas\AppleMaps\AppleMapsConnector;
-use Inventas\AppleMaps\Common\SearchLocation;
+use Inventas\AppleMaps\Common\Geocoding\SearchLocation;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Inventas\AppleMaps\Requests\ReverseGeocodeRequest;
 use Saloon\Http\Faking\MockClient;

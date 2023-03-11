@@ -2,8 +2,8 @@
 
 namespace Inventas\AppleMaps\Requests;
 
-use Inventas\AppleMaps\Common\GeocodeQuery;
-use Inventas\AppleMaps\Common\PlaceResults;
+use Inventas\AppleMaps\Common\Geocoding\GeocodeQuery;
+use Inventas\AppleMaps\Common\Geocoding\PlaceResults;
 use Saloon\Contracts\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

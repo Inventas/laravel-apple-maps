@@ -1,7 +1,7 @@
 <?php
 
 use Inventas\AppleMaps\AppleMapsConnector;
-use Inventas\AppleMaps\Common\TokenResponse;
+use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;

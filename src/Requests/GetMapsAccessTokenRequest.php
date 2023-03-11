@@ -2,7 +2,7 @@
 
 namespace Inventas\AppleMaps\Requests;
 
-use Inventas\AppleMaps\Common\TokenResponse;
+use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\TokenGenerator;
 use Saloon\Contracts\Response;
 use Saloon\Enums\Method;

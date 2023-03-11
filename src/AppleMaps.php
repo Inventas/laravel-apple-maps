@@ -3,10 +3,10 @@
 namespace Inventas\AppleMaps;
 
 use Illuminate\Support\Facades\Cache;
-use Inventas\AppleMaps\Common\GeocodeQuery;
-use Inventas\AppleMaps\Common\PlaceResults;
-use Inventas\AppleMaps\Common\SearchLocation;
-use Inventas\AppleMaps\Common\TokenResponse;
+use Inventas\AppleMaps\Common\Geocoding\GeocodeQuery;
+use Inventas\AppleMaps\Common\Geocoding\PlaceResults;
+use Inventas\AppleMaps\Common\Geocoding\SearchLocation;
+use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\Requests\GeocodeRequest;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Inventas\AppleMaps\Requests\ReverseGeocodeRequest;
@@ -52,7 +52,7 @@ class AppleMaps
 
     public function getIntermediateToken(): string
     {
-        return (new TokenGenerator())->token();
+        return (new TokenGenerator())->token(lifetime: 30 * 60);
     }
 
     public function geocode(GeocodeQuery $query): PlaceResults

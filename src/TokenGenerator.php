@@ -16,10 +16,10 @@ class TokenGenerator
         string $keyIdentifier,
         string $issuer,
         string $privateKey,
+        int $lifetime = 30 * 60,
         ?string $origin = null
     ): UnencryptedToken {
-        $privateKey = str_replace('\\n', "\n", $privateKey);
-
+        $privateKey = PrivateKeySanitizer::sanitize(privateKey: $privateKey);
         $key = InMemory::plainText($privateKey);
 
         return (new JwtFacade())->issue(
@@ -33,24 +33,23 @@ class TokenGenerator
                 ->withHeader('alg', 'ES256')
                 ->withHeader('kid', $keyIdentifier)
                 ->withHeader('typ', 'JWT')
-                ->expiresAt($issuedAt->modify('+30 minutes'))
+                ->expiresAt($issuedAt->modify("+$lifetime seconds"))
         );
     }
 
-    public function token(): string
+    public function token(int $lifetime = 30 * 60): string
     {
-        return Cache::remember('apple-maps.token', 30 * 60, function () {
-            $keyIdentifier = config('apple-maps.key_id');
-            $issuerIdentifier = config('apple-maps.team_id');
-            $privateKey = config('apple-maps.private_key');
-            $tokenGenerator = new TokenGenerator();
-            $token = $tokenGenerator->issue(
-                keyIdentifier: $keyIdentifier,
-                issuer: $issuerIdentifier,
-                privateKey: $privateKey,
-            );
+        $keyIdentifier = config('apple-maps.key_id');
+        $issuerIdentifier = config('apple-maps.team_id');
+        $privateKey = config('apple-maps.private_key');
+        $tokenGenerator = new TokenGenerator();
+        $token = $tokenGenerator->issue(
+            keyIdentifier: $keyIdentifier,
+            issuer: $issuerIdentifier,
+            privateKey: $privateKey,
+            lifetime: $lifetime,
+        );
 
-            return $token->toString();
-        });
+        return $token->toString();
     }
 }

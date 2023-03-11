@@ -1,8 +1,8 @@
 <?php
 
 use Inventas\AppleMaps\AppleMapsConnector;
-use Inventas\AppleMaps\Common\GeocodeQuery;
-use Inventas\AppleMaps\Common\PlaceResults;
+use Inventas\AppleMaps\Common\Geocoding\GeocodeQuery;
+use Inventas\AppleMaps\Common\Geocoding\PlaceResults;
 use Inventas\AppleMaps\Requests\GeocodeRequest;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Saloon\Http\Faking\MockClient;
