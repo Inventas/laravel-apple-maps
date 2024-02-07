@@ -18,8 +18,8 @@
     "require": {
         "php": "^8.1",
         "lcobucci/jwt": "^5.0",
-        "sammyjo20/saloon": "^2.0",
-        "sammyjo20/saloon-laravel": "^2.0",
+        "saloonphp/saloon": "^3.0",
+        "saloonphp/laravel-plugin": "^3.0",
         "spatie/laravel-data": "^3.1",
         "spatie/laravel-package-tools": "^1.14.0",
         "illuminate/contracts": "^10.0",

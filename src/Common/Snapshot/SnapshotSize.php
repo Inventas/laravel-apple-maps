@@ -8,13 +8,17 @@ use Spatie\LaravelData\Data;
 
 class SnapshotSize extends Data
 {
-    #[GreaterThanOrEqualTo(50)]
-    #[LessThanOrEqualTo(640)]
-    public int $width = 600;
 
-    #[GreaterThanOrEqualTo(50)]
-    #[LessThanOrEqualTo(640)]
-    public int $height = 400;
+    public function __construct(
+        #[GreaterThanOrEqualTo(50)]
+        #[LessThanOrEqualTo(640)]
+        public int $width = 600,
+        #[GreaterThanOrEqualTo(50)]
+        #[LessThanOrEqualTo(640)]
+        public int $height = 400,
+    ) {
+
+    }
 
     public function __toString(): string {
         return "{$this->width}x{$this->height}";

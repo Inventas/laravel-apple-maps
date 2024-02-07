@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inventas\AppleMaps\Controller\AnnotationController;
 use Inventas\AppleMaps\Controller\AppleMapsController;
 
 Route::group([
@@ -18,6 +19,9 @@ Route::group([
 
         Route::get('apple-maps/geocode', [AppleMapsController::class, 'geocode'])
             ->name('apple-maps.geocode');
+
+        Route::get('apple-maps/annotation/preview', [AnnotationController::class, 'previewAnnotation'])
+            ->name('apple-maps.annotation.preview');
 
     });
 });
