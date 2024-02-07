@@ -13,10 +13,15 @@ class SnapshotQuery extends Data
     public int $zoom = 12;
 
     public SnapshotSize $size;
+
     public SnapshotScale $scale;
+
     public SnapshotMapType $mapType = SnapshotMapType::Standard;
+
     public SnapshotColorScheme $colorScheme = SnapshotColorScheme::Light;
+
     public bool $showPointsOfInterest = true;
+
     public string $lang = 'en-US';
 
     public function __construct(
@@ -49,5 +54,4 @@ class SnapshotQuery extends Data
             'poi' => $this->showPointsOfInterest ? 1 : 0,
         ], fn ($value) => ! is_null($value));
     }
-
 }

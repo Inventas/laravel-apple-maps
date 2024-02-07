@@ -21,7 +21,7 @@ it('generates a map snapshot', function () {
                 point: $location,
                 color: '2563EB',
                 markerStyle: SnapshotMarkerStyle::Balloon,
-            )
+            ),
         ]
     );
 
@@ -43,7 +43,7 @@ it('generates a map snapshot (auto center)', function () {
                 point: $location,
                 color: '2563EB',
                 markerStyle: SnapshotMarkerStyle::Balloon,
-            )
+            ),
         ]
     );
 

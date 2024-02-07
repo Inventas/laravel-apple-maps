@@ -8,8 +8,8 @@ class GeocodeQuery extends Data
 {
     /**
      * @var string The language the server should use when returning the response,
-     * specified using a BCP 47 language code. For example, for English use lang=en-US.
-     * Default: en-US
+     *             specified using a BCP 47 language code. For example, for English use lang=en-US.
+     *             Default: en-US
      */
     public string $lang = 'en-US';
 

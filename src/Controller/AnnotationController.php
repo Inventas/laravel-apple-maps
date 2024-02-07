@@ -10,7 +10,6 @@ use Inventas\AppleMaps\Common\Geocoding\Location;
 use Inventas\AppleMaps\Common\Snapshot\SnapshotAnnotation;
 use Inventas\AppleMaps\Common\Snapshot\SnapshotQuery;
 use Inventas\AppleMaps\Common\Snapshot\SnapshotSize;
-use Inventas\AppleMaps\Facades\AppleMaps;
 
 class AnnotationController extends Controller
 {
@@ -18,12 +17,12 @@ class AnnotationController extends Controller
     {
         $data = Validator::make(request()->query(), [
             'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180'
+            'longitude' => 'required|numeric|between:-180,180',
         ], [
             'latitude.numeric' => 'The latitude must be numeric.',
             'longitude.numeric' => 'The longitude must be numeric.',
             'latitude.between' => 'The latitude must be in range between -90 and 90.',
-            'longitude.between' => 'The longitude mus be in range between -180 and 180.'
+            'longitude.between' => 'The longitude mus be in range between -180 and 180.',
         ])->validate();
 
         $url = AppleMapsSnapshot::autoSnapshotUrl(new SnapshotQuery(
@@ -36,7 +35,7 @@ class AnnotationController extends Controller
                     longitude: $data['longitude']
                 ),
                 color: 'red',
-            )
+            ),
         ]);
 
         return new JsonResponse(['url' => $url], 200);

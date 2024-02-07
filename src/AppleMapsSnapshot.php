@@ -5,25 +5,23 @@ namespace Inventas\AppleMaps;
 use Inventas\AppleMaps\Common\Geocoding\Location;
 use Inventas\AppleMaps\Common\Snapshot\SnapshotAnnotation;
 use Inventas\AppleMaps\Common\Snapshot\SnapshotQuery;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\LaravelData\DataCollection;
 
-class AppleMapsSnapshot {
+class AppleMapsSnapshot
+{
+    public static string $snapshotBaseUrl = 'https://snapshot.apple-mapkit.com';
 
-	public static string $snapshotBaseUrl = 'https://snapshot.apple-mapkit.com';
-	public static string $snapshotPath = '/api/v1/snapshot';
-	public static array $jsonParams = [
-		'annotations',
-		'overlays',
-		'imgs',
-	];
+    public static string $snapshotPath = '/api/v1/snapshot';
+
+    public static array $jsonParams = [
+        'annotations',
+        'overlays',
+        'imgs',
+    ];
 
     /**
      * Generates a signed URL to an Apple Maps snapshot image.
      *
-     * @param Location $center The center of the map, specified as either coordinates or an address
-     * @param SnapshotQuery $query
-     * @param array $annotations
+     * @param  Location  $center  The center of the map, specified as either coordinates or an address
      * @return false|string
      */
     public static function snapshotUrl(
@@ -68,16 +66,16 @@ class AppleMapsSnapshot {
             'annotations' => json_encode($parsedAnnotations),
         ], $query->toQuery());
 
-        $request_uri = static::$snapshotPath . '?' . http_build_query($params);
+        $request_uri = static::$snapshotPath.'?'.http_build_query($params);
 
-        if (!$key = openssl_pkey_get_private($privateKey)) {
+        if (! $key = openssl_pkey_get_private($privateKey)) {
             return false;
         }
 
-        if (!openssl_sign($request_uri, $signature, $key, OPENSSL_ALGO_SHA256)) {
+        if (! openssl_sign($request_uri, $signature, $key, OPENSSL_ALGO_SHA256)) {
             return false;
         }
 
-        return static::$snapshotBaseUrl . $request_uri . '&signature=' . urlencode(base64_encode($signature));
+        return static::$snapshotBaseUrl.$request_uri.'&signature='.urlencode(base64_encode($signature));
     }
 }

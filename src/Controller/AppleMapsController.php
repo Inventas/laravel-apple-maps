@@ -28,5 +28,4 @@ class AppleMapsController extends Controller
 
         return new JsonResponse($response, 200);
     }
-
 }

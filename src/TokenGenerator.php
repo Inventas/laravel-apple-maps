@@ -3,7 +3,6 @@
 namespace Inventas\AppleMaps;
 
 use DateTimeImmutable;
-use Illuminate\Support\Facades\Cache;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\JwtFacade;
 use Lcobucci\JWT\Signer\Ecdsa\Sha256;
