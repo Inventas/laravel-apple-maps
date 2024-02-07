@@ -4,9 +4,9 @@ namespace Inventas\AppleMaps\Requests;
 
 use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\TokenGenerator;
-use Saloon\Http\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Http\Response;
 
 class GetMapsAccessTokenRequest extends Request
 {

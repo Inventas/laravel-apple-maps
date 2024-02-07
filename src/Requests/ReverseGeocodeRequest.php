@@ -4,9 +4,9 @@ namespace Inventas\AppleMaps\Requests;
 
 use Inventas\AppleMaps\Common\Geocoding\PlaceResults;
 use Inventas\AppleMaps\Common\Geocoding\SearchLocation;
-use Saloon\Http\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Http\Response;
 
 class ReverseGeocodeRequest extends Request
 {
