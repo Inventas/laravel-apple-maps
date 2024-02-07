@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+    backupGlobals="false"
+    bootstrap="vendor/autoload.php"
+    colors="true"
+    processIsolation="false"
+    stopOnFailure="false"
+    executionOrder="random"
+    failOnWarning="true"
+    failOnRisky="true"
+    failOnEmptyTestSuite="true"
+    beStrictAboutOutputDuringTests="true"
+    cacheDirectory=".phpunit.cache"
+    backupStaticProperties="false"
+>
+    <testsuites>
+        <testsuite name="Inventas Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <report>
+            <html outputDirectory="build/coverage"/>
+            <text outputFile="build/coverage.txt"/>
+            <clover outputFile="build/logs/clover.xml"/>
+        </report>
+    </coverage>
+    <logging>
+        <junit outputFile="build/report.junit.xml"/>
+    </logging>
+    <php>
+        <env name="XDEBUG_MODE" value="coverage" />
+        <env name="APPLE_MAPS_TEAM_ID" value="77N8D7LGCZ"/>
+        <env name="APPLE_MAPS_KEY_ID" value="5JTQU257Z8"/>
+        <env name="APPLE_MAPS_PRIVATE_KEY" value="-----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgKfAa3w/3J3y6Ot9z\nV6IikfohdnYesYN7Vawmr2FjBTKgCgYIKoZIzj0DAQehRANCAASXZ/20pMqX5lY4\nmSXLaKzu1saM/lVLgadpspcolrManhi3M4EfVVe7/WIdcBNJttVSv/3Gip2TqQeu\nJ0tjgKQd\n-----END PRIVATE KEY-----"/>
+    </php>
+</phpunit>

@@ -5,7 +5,7 @@ namespace Inventas\AppleMaps;
 use Illuminate\Support\Facades\Cache;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Saloon\Contracts\Authenticator;
-use Saloon\Contracts\PendingRequest;
+use Saloon\Http\PendingRequest;
 
 class AppleMapsAuthenticator implements Authenticator
 {

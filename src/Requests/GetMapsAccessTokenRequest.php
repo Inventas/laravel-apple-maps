@@ -4,7 +4,7 @@ namespace Inventas\AppleMaps\Requests;
 
 use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\TokenGenerator;
-use Saloon\Contracts\Response;
+use Saloon\Http\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
