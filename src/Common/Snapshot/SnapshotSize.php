@@ -15,9 +15,7 @@ class SnapshotSize extends Data
         #[GreaterThanOrEqualTo(50)]
         #[LessThanOrEqualTo(640)]
         public int $height = 400,
-    ) {
-
-    }
+    ) {}
 
     public function __toString(): string
     {

@@ -13,7 +13,7 @@ test('it can geocode an address', function () {
         ReverseGeocodeRequest::class => MockResponse::fixture('reverse-geocode.berlin'),
     ]);
 
-    $connector = new AppleMapsConnector();
+    $connector = new AppleMapsConnector;
     $connector->withMockClient($mockClient);
     $request = new ReverseGeocodeRequest(
         location: new SearchLocation(latitude: 52.51626, longitude: 13.37721),

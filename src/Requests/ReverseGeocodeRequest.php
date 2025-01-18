@@ -15,8 +15,7 @@ class ReverseGeocodeRequest extends Request
     public function __construct(
         protected SearchLocation $location,
         protected string $language = 'en-US',
-    ) {
-    }
+    ) {}
 
     public function resolveEndpoint(): string
     {

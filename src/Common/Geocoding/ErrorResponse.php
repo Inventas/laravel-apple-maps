@@ -9,6 +9,5 @@ class ErrorResponse extends Data
     public function __construct(
         public string $message,
         public array $details = [],
-    ) {
-    }
+    ) {}
 }

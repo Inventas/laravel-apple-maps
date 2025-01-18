@@ -21,8 +21,8 @@ class TokenGenerator
         $privateKey = PrivateKeySanitizer::sanitize(privateKey: $privateKey);
         $key = InMemory::plainText($privateKey);
 
-        return (new JwtFacade())->issue(
-            new Sha256(),
+        return (new JwtFacade)->issue(
+            new Sha256,
             $key,
             static fn (
                 Builder $builder,
@@ -41,7 +41,7 @@ class TokenGenerator
         $keyIdentifier = config('apple-maps.key_id');
         $issuerIdentifier = config('apple-maps.team_id');
         $privateKey = config('apple-maps.private_key');
-        $tokenGenerator = new TokenGenerator();
+        $tokenGenerator = new TokenGenerator;
         $token = $tokenGenerator->issue(
             keyIdentifier: $keyIdentifier,
             issuer: $issuerIdentifier,

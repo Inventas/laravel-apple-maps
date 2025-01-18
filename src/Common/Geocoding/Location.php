@@ -9,8 +9,7 @@ class Location extends Data
     public function __construct(
         public float $latitude,
         public float $longitude,
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {

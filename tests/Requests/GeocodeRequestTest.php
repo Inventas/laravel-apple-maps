@@ -15,7 +15,7 @@ test('it can geocode an address', function () {
         GeocodeRequest::class => MockResponse::fixture('geocode.berlin'),
     ]);
 
-    $connector = new AppleMapsConnector();
+    $connector = new AppleMapsConnector;
     $connector->withMockClient($mockClient);
     $request = new GeocodeRequest(
         new GeocodeQuery(

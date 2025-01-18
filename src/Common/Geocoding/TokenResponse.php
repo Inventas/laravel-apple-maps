@@ -9,7 +9,5 @@ class TokenResponse extends Data
     public function __construct(
         public string $accessToken,
         public int $expiresInSeconds
-    ) {
-
-    }
+    ) {}
 }

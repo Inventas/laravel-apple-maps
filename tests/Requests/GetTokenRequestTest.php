@@ -11,9 +11,9 @@ test('get token', function () {
         GetMapsAccessTokenRequest::class => MockResponse::fixture('token'),
     ]);
 
-    $connector = new AppleMapsConnector();
+    $connector = new AppleMapsConnector;
     $connector->withMockClient($mockClient);
-    $request = new GetMapsAccessTokenRequest();
+    $request = new GetMapsAccessTokenRequest;
     $response = $connector->send($request);
 
     $accessTokenResponse = $response->dto();

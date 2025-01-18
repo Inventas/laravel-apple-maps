@@ -32,7 +32,7 @@ class AppleMapsSnapshot
         return self::baseSnapshotUrl($center->toString(), $query, $annotations);
     }
 
-    public static function autoSnapshotUrl(SnapshotQuery $query, array $annotations = [])
+    public static function autoSnapshotUrl(SnapshotQuery $query, array $annotations = []): bool|string
     {
         return self::baseSnapshotUrl('auto', $query, $annotations);
     }
@@ -47,11 +47,11 @@ class AppleMapsSnapshot
         $privateKey = config('apple-maps.private_key');
         $privateKey = PrivateKeySanitizer::sanitize(privateKey: $privateKey);
 
-        foreach (static::$jsonParams as $param) {
-            if (isset($additionalParams[$param])) {
-                $additionalParams[$param] = json_encode($additionalParams[$param]);
-            }
-        }
+        //        foreach (static::$jsonParams as $param) {
+        //            if (isset($additionalParams[$param])) {
+        //                $additionalParams[$param] = json_encode($additionalParams[$param]);
+        //            }
+        //        }
 
         $parsedAnnotations = collect($annotations)
             ->map(function (SnapshotAnnotation $annotation) {
