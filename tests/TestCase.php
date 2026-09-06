@@ -5,6 +5,7 @@ namespace Inventas\AppleMaps\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Inventas\AppleMaps\AppleMapsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use RuntimeException;
 use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra
@@ -18,7 +19,7 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             LaravelDataServiceProvider::class,
@@ -26,13 +27,22 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
-        config()->set('database.default', 'testing');
+        $privateKey = openssl_pkey_new([
+            'curve_name' => 'prime256v1',
+            'private_key_type' => OPENSSL_KEYTYPE_EC,
+        ]);
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-apple-maps_table.php.stub';
-        $migration->up();
-        */
+        if ($privateKey === false || ! openssl_pkey_export($privateKey, $privateKeyPem)) {
+            throw new RuntimeException('Unable to generate the Apple Maps test key.');
+        }
+
+        $app['config']->set([
+            'apple-maps.key_id' => 'TESTKEYID',
+            'apple-maps.private_key' => $privateKeyPem,
+            'apple-maps.team_id' => 'TESTTEAMID',
+            'database.default' => 'testing',
+        ]);
     }
 }
