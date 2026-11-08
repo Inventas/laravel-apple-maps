@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-apple-maps` will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- **Breaking:** The token, geocoding and annotation preview routes are no longer registered by default. Set `APPLE_MAPS_ROUTES=true` to enable them.
+
+### Fixed
+
+- `TokenGenerator::issue()` and `TokenGenerator::token()` now add the `origin` claim when an origin is given; previously the argument was ignored.
+
+### Added
+
+- `APPLE_MAPS_TOKEN_ORIGIN` (`apple-maps.token_origin`) restricts MapKit JS tokens from the token route and `AppleMaps::getIntermediateToken()` to one origin. `getIntermediateToken()` also accepts an `origin` argument.
+
 ## 2.0.0 - 2026-09-06
 
 ### Changed

@@ -37,5 +37,30 @@ return [
     */
     'private_key' => env('APPLE_MAPS_PRIVATE_KEY'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Token Origin
+    |--------------------------------------------------------------------------
+    |
+    | The origin added to MapKit JS tokens, for example https://example.com.
+    | Apple accepts such a token only from pages served by that origin, so a
+    | copied token cannot be used on another site. Leave empty to issue
+    | tokens without an origin restriction.
+    |
+    */
+    'token_origin' => env('APPLE_MAPS_TOKEN_ORIGIN'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | HTTP Routes
+    |--------------------------------------------------------------------------
+    |
+    | The package's token, geocoding and annotation preview routes are only
+    | registered when enabled. They use your Apple Maps key and quota, so
+    | protect them with authentication middleware before enabling them.
+    |
+    */
+    'routes' => (bool) env('APPLE_MAPS_ROUTES', false),
+
     'api_middleware' => 'api',
 ];

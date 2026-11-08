@@ -28,7 +28,7 @@ class TokenGenerator
             static function (
                 Builder $builder,
                 DateTimeImmutable $issuedAt,
-            ) use ($issuer, $keyIdentifier, $lifetime, $scope): Builder {
+            ) use ($issuer, $keyIdentifier, $lifetime, $origin, $scope): Builder {
                 $builder = $builder
                     ->issuedBy($issuer)
                     ->withHeader('alg', 'ES256')
@@ -36,12 +36,16 @@ class TokenGenerator
                     ->withHeader('typ', 'JWT')
                     ->expiresAt($issuedAt->modify("+$lifetime seconds"));
 
+                if ($origin !== null) {
+                    $builder = $builder->withClaim('origin', $origin);
+                }
+
                 return $scope === null ? $builder : $builder->withClaim('scope', $scope);
             },
         );
     }
 
-    public function token(int $lifetime = 30 * 60, ?string $scope = null): string
+    public function token(int $lifetime = 30 * 60, ?string $scope = null, ?string $origin = null): string
     {
         $keyIdentifier = config('apple-maps.key_id');
         $issuerIdentifier = config('apple-maps.team_id');
@@ -52,6 +56,7 @@ class TokenGenerator
             issuer: $issuerIdentifier,
             privateKey: $privateKey,
             lifetime: $lifetime,
+            origin: $origin,
             scope: $scope,
         );
 
