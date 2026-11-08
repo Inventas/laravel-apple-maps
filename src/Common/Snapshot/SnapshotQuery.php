@@ -34,7 +34,7 @@ class SnapshotQuery extends Data
         string $lang = 'en-US'
     ) {
         $this->zoom = $zoom;
-        $this->size = $size ?? new SnapshotSize();
+        $this->size = $size ?? new SnapshotSize;
         $this->scale = $scale;
         $this->colorScheme = $colorScheme;
         $this->mapType = $mapType;
@@ -44,7 +44,7 @@ class SnapshotQuery extends Data
 
     public function toQuery(): array
     {
-        return array_filter([
+        return [
             'z' => $this->zoom,
             'size' => $this->size->toString(),
             'lang' => $this->lang,
@@ -52,6 +52,6 @@ class SnapshotQuery extends Data
             't' => $this->mapType->value,
             'colorScheme' => $this->colorScheme->value,
             'poi' => $this->showPointsOfInterest ? 1 : 0,
-        ], fn ($value) => ! is_null($value));
+        ];
     }
 }

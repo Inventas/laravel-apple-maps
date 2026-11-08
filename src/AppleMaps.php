@@ -10,9 +10,8 @@ use Inventas\AppleMaps\Common\Geocoding\TokenResponse;
 use Inventas\AppleMaps\Requests\GeocodeRequest;
 use Inventas\AppleMaps\Requests\GetMapsAccessTokenRequest;
 use Inventas\AppleMaps\Requests\ReverseGeocodeRequest;
-use ReflectionException;
-use Saloon\Exceptions\InvalidResponseClassException;
-use Saloon\Exceptions\PendingRequestException;
+use Saloon\Exceptions\Request\FatalRequestException;
+use Saloon\Exceptions\Request\RequestException;
 
 class AppleMaps
 {
@@ -20,15 +19,11 @@ class AppleMaps
 
     public function __construct()
     {
-        $this->connector = new AppleMapsConnector();
+        $this->connector = new AppleMapsConnector;
     }
 
     /**
      * Get an Apple Maps auth token with a validity of 30 minutes.
-     *
-     * @throws ReflectionException
-     * @throws InvalidResponseClassException
-     * @throws PendingRequestException
      */
     public function getToken(): TokenResponse
     {
@@ -38,13 +33,12 @@ class AppleMaps
     }
 
     /**
-     * @throws InvalidResponseClassException
-     * @throws ReflectionException
-     * @throws PendingRequestException
+     * @throws FatalRequestException
+     * @throws RequestException
      */
     public function getNewToken(): TokenResponse
     {
-        $request = new GetMapsAccessTokenRequest();
+        $request = new GetMapsAccessTokenRequest;
         $response = $this->connector->send($request);
 
         return $response->dtoOrFail();
@@ -52,7 +46,7 @@ class AppleMaps
 
     public function getIntermediateToken(): string
     {
-        return (new TokenGenerator())->token(lifetime: 30 * 60);
+        return (new TokenGenerator)->token(lifetime: 30 * 60);
     }
 
     public function geocode(GeocodeQuery $query): PlaceResults

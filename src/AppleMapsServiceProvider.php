@@ -29,7 +29,7 @@ class AppleMapsServiceProvider extends PackageServiceProvider
         parent::registeringPackage();
 
         $this->app->bind('apple-maps', function () {
-            return new AppleMaps();
+            return new AppleMaps;
         });
     }
 }

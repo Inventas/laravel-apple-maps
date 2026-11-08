@@ -12,8 +12,7 @@ class SnapshotAnnotation extends Data
         public string $color,
         public ?string $glyphText = null,
         public SnapshotMarkerStyle $markerStyle = SnapshotMarkerStyle::Balloon,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

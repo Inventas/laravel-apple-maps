@@ -14,6 +14,5 @@ class Place extends Data
         public string $name,
         public Location $coordinate,
         public StructuredAddress $structuredAddress,
-    ) {
-    }
+    ) {}
 }

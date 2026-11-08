@@ -15,7 +15,7 @@ it('generates a map snapshot', function () {
 
     $signedURL = AppleMapsSnapshot::snapshotUrl(
         center: $location,
-        query: new SnapshotQuery(),
+        query: new SnapshotQuery,
         annotations: [
             new SnapshotAnnotation(
                 point: $location,
@@ -37,7 +37,7 @@ it('generates a map snapshot (auto center)', function () {
     );
 
     $signedURL = AppleMapsSnapshot::autoSnapshotUrl(
-        query: new SnapshotQuery(),
+        query: new SnapshotQuery,
         annotations: [
             new SnapshotAnnotation(
                 point: $location,

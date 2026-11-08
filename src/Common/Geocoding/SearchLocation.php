@@ -10,8 +10,7 @@ class SearchLocation extends Data implements Stringable
     public function __construct(
         public float $latitude,
         public float $longitude,
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {

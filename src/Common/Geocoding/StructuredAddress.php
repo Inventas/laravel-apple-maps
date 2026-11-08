@@ -17,6 +17,5 @@ class StructuredAddress extends Data
         public ?string $subLocality,
         public ?string $subThoroughfare,
         public ?string $thoroughfare,
-    ) {
-    }
+    ) {}
 }

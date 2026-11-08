@@ -11,6 +11,5 @@ class MapRegion extends Data
         public float $northLatitude,
         public float $southLatitude,
         public float $westLongitude,
-    ) {
-    }
+    ) {}
 }

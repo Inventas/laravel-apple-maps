@@ -9,11 +9,15 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Installation
 
+Version 2 requires PHP 8.2 or later and Laravel 12.61.1+ or Laravel 13.12+.
+
 You can install the package via composer:
 
 ```bash
 composer require inventas/laravel-apple-maps
 ```
+
+When you upgrade from version 1, follow the [upgrade guide](UPGRADE.md).
 
 You can publish and run the migrations with:
 

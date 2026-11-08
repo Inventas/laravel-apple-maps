@@ -9,8 +9,7 @@ class SearchRegion
         public float $eastLongitude,
         public float $southLatitude,
         public float $westLongitude,
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {
