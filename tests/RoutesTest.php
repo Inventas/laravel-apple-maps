@@ -1,10 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inventas\AppleMaps\Tests\TestCase;
 
 use function Pest\Laravel\getJson;
 
-it('does not register the HTTP routes unless they are enabled', function () {
+afterEach(function () {
+    TestCase::$routes = null;
+});
+
+it('does not register the HTTP routes by default', function () {
     expect(Route::has('api.v1.apple-maps.token'))->toBeFalse()
         ->and(Route::has('api.v1.apple-maps.geocode'))->toBeFalse()
         ->and(Route::has('api.v1.apple-maps.annotation.preview'))->toBeFalse();
@@ -14,7 +19,8 @@ it('does not register the HTTP routes unless they are enabled', function () {
 });
 
 it('registers the HTTP routes when enabled', function () {
-    enableAppleMapsRoutes();
+    TestCase::$routes = true;
+    $this->refreshApplication();
 
     expect(Route::has('api.v1.apple-maps.token'))->toBeTrue()
         ->and(Route::has('api.v1.apple-maps.geocode'))->toBeTrue()

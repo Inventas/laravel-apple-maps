@@ -50,7 +50,7 @@ APPLE_MAPS_PRIVATE_KEY='-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_BODY\n----
 
 Set `APPLE_MAPS_PRIVATE_KEY` to the contents of the `.p8` file, including both `PRIVATE KEY` lines. For a single-line value as shown above, replace each line break with a literal `\n`. The package also accepts the original multiline text. Keep the private key on the server and out of source control.
 
-The default config reads these variables. To change package settings such as the middleware for its optional HTTP routes, publish `config/apple-maps.php`.
+The default config reads these variables. To change package settings such as the middleware for its HTTP routes, publish `config/apple-maps.php`.
 
 ```bash
 php artisan vendor:publish --tag=apple-maps-config

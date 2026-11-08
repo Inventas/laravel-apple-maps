@@ -1,11 +1,19 @@
 <?php
 
+use Inventas\AppleMaps\Tests\TestCase;
 use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Token\Parser;
 
 use function Pest\Laravel\getJson;
 
-beforeEach(fn () => enableAppleMapsRoutes());
+beforeEach(function () {
+    TestCase::$routes = true;
+    $this->refreshApplication();
+});
+
+afterEach(function () {
+    TestCase::$routes = null;
+});
 
 it('returns the locally signed token with its original claims', function () {
     $response = getJson('/api/v1/apple-maps/token');

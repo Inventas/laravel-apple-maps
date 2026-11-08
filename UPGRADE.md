@@ -10,11 +10,7 @@ The package no longer registers `/api/v1/apple-maps/token`, `/api/v1/apple-maps/
 APPLE_MAPS_ROUTES=true
 ```
 
-If you published `config/apple-maps.php`, add the new `routes` and `token_origin` keys from the package's config file.
-
-### Restrict MapKit JS tokens
-
-Tokens from the token route and `AppleMaps::getIntermediateToken()` work on any website unless they carry an origin. Set `APPLE_MAPS_TOKEN_ORIGIN` to your site's origin, such as `https://example.com`.
+If you published `config/apple-maps.php` before 2.1, add the `routes` and `token_origin` keys from the package's config file.
 
 ## Upgrade from 1.x to 2.0
 
