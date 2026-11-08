@@ -17,10 +17,19 @@ class AppleMapsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-apple-maps')
-            ->hasRoute('api')
             ->hasConfigFile()
             ->hasViews()
             ->hasCommand(AppleMapsCommand::class);
+    }
+
+    /**
+     * The routes call Apple with the application's key; applications that do not use them can turn them off.
+     */
+    public function packageBooted(): void
+    {
+        if (filter_var(config('apple-maps.routes'), FILTER_VALIDATE_BOOL)) {
+            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        }
     }
 
     public function registeringPackage()

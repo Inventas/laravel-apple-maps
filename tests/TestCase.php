@@ -10,6 +10,11 @@ use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra
 {
+    /**
+     * Overrides `apple-maps.routes` for the next application boot; null keeps the package default.
+     */
+    public static ?bool $routes = null;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -44,5 +49,9 @@ class TestCase extends Orchestra
             'apple-maps.team_id' => 'TESTTEAMID',
             'database.default' => 'testing',
         ]);
+
+        if (static::$routes !== null) {
+            $app['config']->set('apple-maps.routes', static::$routes);
+        }
     }
 }
