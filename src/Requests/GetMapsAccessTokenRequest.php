@@ -19,7 +19,7 @@ class GetMapsAccessTokenRequest extends Request
 
     protected function defaultHeaders(): array
     {
-        $token = (new TokenGenerator)->token();
+        $token = (new TokenGenerator)->token(scope: 'server_api');
 
         return [
             'Authorization' => "Bearer $token",

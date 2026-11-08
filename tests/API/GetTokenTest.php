@@ -1,12 +1,19 @@
 <?php
 
+use Lcobucci\JWT\Encoding\JoseEncoder;
+use Lcobucci\JWT\Token\Parser;
+
 use function Pest\Laravel\getJson;
 
-it('get token', function () {
+it('returns the locally signed token with its original claims', function () {
     $response = getJson('/api/v1/apple-maps/token');
 
     expect($response)
         ->status()->toBe(200)
         ->and($response)
         ->assertJsonStructure(['accessToken', 'expiresInSeconds']);
+
+    $token = (new Parser(new JoseEncoder))->parse($response->json('accessToken'));
+
+    expect($token->claims()->has('scope'))->toBeFalse();
 });

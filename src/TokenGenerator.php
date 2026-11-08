@@ -16,7 +16,8 @@ class TokenGenerator
         string $issuer,
         string $privateKey,
         int $lifetime = 30 * 60,
-        ?string $origin = null
+        ?string $origin = null,
+        ?string $scope = null,
     ): UnencryptedToken {
         $privateKey = PrivateKeySanitizer::sanitize(privateKey: $privateKey);
         $key = InMemory::plainText($privateKey);
@@ -24,19 +25,23 @@ class TokenGenerator
         return (new JwtFacade)->issue(
             new Sha256,
             $key,
-            static fn (
+            static function (
                 Builder $builder,
-                DateTimeImmutable $issuedAt
-            ): Builder => $builder
-                ->issuedBy($issuer)
-                ->withHeader('alg', 'ES256')
-                ->withHeader('kid', $keyIdentifier)
-                ->withHeader('typ', 'JWT')
-                ->expiresAt($issuedAt->modify("+$lifetime seconds"))
+                DateTimeImmutable $issuedAt,
+            ) use ($issuer, $keyIdentifier, $lifetime, $scope): Builder {
+                $builder = $builder
+                    ->issuedBy($issuer)
+                    ->withHeader('alg', 'ES256')
+                    ->withHeader('kid', $keyIdentifier)
+                    ->withHeader('typ', 'JWT')
+                    ->expiresAt($issuedAt->modify("+$lifetime seconds"));
+
+                return $scope === null ? $builder : $builder->withClaim('scope', $scope);
+            },
         );
     }
 
-    public function token(int $lifetime = 30 * 60): string
+    public function token(int $lifetime = 30 * 60, ?string $scope = null): string
     {
         $keyIdentifier = config('apple-maps.key_id');
         $issuerIdentifier = config('apple-maps.team_id');
@@ -47,6 +52,7 @@ class TokenGenerator
             issuer: $issuerIdentifier,
             privateKey: $privateKey,
             lifetime: $lifetime,
+            scope: $scope,
         );
 
         return $token->toString();

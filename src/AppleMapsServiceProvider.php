@@ -20,7 +20,6 @@ class AppleMapsServiceProvider extends PackageServiceProvider
             ->hasRoute('api')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel-apple-maps_table')
             ->hasCommand(AppleMapsCommand::class);
     }
 
