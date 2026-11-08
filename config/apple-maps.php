@@ -55,13 +55,12 @@ return [
     | HTTP Routes
     |--------------------------------------------------------------------------
     |
-    | The package's token, geocoding and annotation preview routes use your
-    | Apple Maps key and quota. Protect them with authentication middleware
-    | or set this to false if your application does not call them. The
-    | default will change to false in the next major version.
+    | The package's token, geocoding and annotation preview routes are only
+    | registered when enabled. They use your Apple Maps key and quota, so
+    | protect them with authentication middleware before enabling them.
     |
     */
-    'routes' => (bool) env('APPLE_MAPS_ROUTES', true),
+    'routes' => (bool) env('APPLE_MAPS_ROUTES', false),
 
     'api_middleware' => 'api',
 ];

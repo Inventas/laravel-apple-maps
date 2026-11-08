@@ -132,7 +132,7 @@ The method signs the URL locally and returns `false` if OpenSSL cannot load the 
 
 ### Use the built-in HTTP routes
 
-The package registers these routes when Laravel loads the service provider. They use your Apple Maps key and quota. If your application does not call them, set `APPLE_MAPS_ROUTES=false`. The next major version will turn them off by default.
+The package's HTTP routes are off by default because they use your Apple Maps key and quota. To register them, set `APPLE_MAPS_ROUTES=true`.
 
 | Method and path | Result |
 | --- | --- |
@@ -140,7 +140,7 @@ The package registers these routes when Laravel loads the service provider. They
 | `GET /api/v1/apple-maps/annotation/preview?latitude=52.51626&longitude=13.37721` | A signed snapshot URL with a marker at the given coordinates. |
 | `GET /api/v1/apple-maps/token` | A locally signed JWT for MapKit JS, valid for 30 minutes, in the `accessToken` JSON field. |
 
-The routes use the `api` middleware group by default. Before you expose the routes, set `api_middleware` in `config/apple-maps.php` to include your application's authentication middleware. For example, if your app already uses Sanctum, set `'api_middleware' => ['api', 'auth:sanctum']`. This setting applies to all three routes.
+The routes use the `api` middleware group by default. Before you enable the routes, set `api_middleware` in `config/apple-maps.php` to include your application's authentication middleware. For example, if your app already uses Sanctum, set `'api_middleware' => ['api', 'auth:sanctum']`. This setting applies to all three routes.
 
 ### Restrict MapKit JS tokens to your site
 

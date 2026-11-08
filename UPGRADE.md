@@ -1,5 +1,17 @@
 # Upgrade Guide
 
+## Upgrade from 2.x to 3.0
+
+### Enable the HTTP routes if you use them
+
+The package no longer registers `/api/v1/apple-maps/token`, `/api/v1/apple-maps/geocode` and `/api/v1/apple-maps/annotation/preview` by default. If your application calls these routes, add this variable and protect the routes with authentication middleware through `api_middleware`:
+
+```dotenv
+APPLE_MAPS_ROUTES=true
+```
+
+If you published `config/apple-maps.php` before 2.1, add the `routes` and `token_origin` keys from the package's config file.
+
 ## Upgrade from 1.x to 2.0
 
 Version 2.0 updates the package to Saloon 4 and removes Laravel 11 support. The package's public PHP API is unchanged.

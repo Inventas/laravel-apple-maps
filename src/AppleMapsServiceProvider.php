@@ -23,7 +23,7 @@ class AppleMapsServiceProvider extends PackageServiceProvider
     }
 
     /**
-     * The routes call Apple with the application's key; applications that do not use them can turn them off.
+     * The routes call Apple with the application's key, so they are only registered when enabled.
      */
     public function packageBooted(): void
     {

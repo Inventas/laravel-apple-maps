@@ -2,7 +2,13 @@
 
 All notable changes to `laravel-apple-maps` will be documented in this file.
 
-## Unreleased
+## Unreleased (3.0.0)
+
+### Changed
+
+- **Breaking:** The token, geocoding and annotation preview routes are no longer registered by default. Set `APPLE_MAPS_ROUTES=true` to enable them.
+
+## Unreleased (2.1.0)
 
 ### Added
 
