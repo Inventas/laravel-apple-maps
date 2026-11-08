@@ -44,9 +44,15 @@ class AppleMaps
         return $response->dtoOrFail();
     }
 
-    public function getIntermediateToken(): string
+    /**
+     * Sign a MapKit JS token valid for 30 minutes. Apple only accepts a token with an origin
+     * from pages served by that origin, so set `apple-maps.token_origin` for public tokens.
+     */
+    public function getIntermediateToken(?string $origin = null): string
     {
-        return (new TokenGenerator)->token(lifetime: 30 * 60);
+        $origin ??= config('apple-maps.token_origin');
+
+        return (new TokenGenerator)->token(lifetime: 30 * 60, origin: filled($origin) ? (string) $origin : null);
     }
 
     public function geocode(GeocodeQuery $query): PlaceResults

@@ -132,15 +132,25 @@ The method signs the URL locally and returns `false` if OpenSSL cannot load the 
 
 ### Use the built-in HTTP routes
 
-The package registers these routes when Laravel loads the service provider.
+The package registers these routes when Laravel loads the service provider. They use your Apple Maps key and quota. If your application does not call them, set `APPLE_MAPS_ROUTES=false`. The next major version will turn them off by default.
 
 | Method and path | Result |
 | --- | --- |
 | `GET /api/v1/apple-maps/geocode?q=Berlin` | Places that match the query. |
 | `GET /api/v1/apple-maps/annotation/preview?latitude=52.51626&longitude=13.37721` | A signed snapshot URL with a marker at the given coordinates. |
-| `GET /api/v1/apple-maps/token` | A locally signed, unscoped JWT valid for 30 minutes in the `accessToken` JSON field. |
+| `GET /api/v1/apple-maps/token` | A locally signed JWT for MapKit JS, valid for 30 minutes, in the `accessToken` JSON field. |
 
 The routes use the `api` middleware group by default. Before you expose the routes, set `api_middleware` in `config/apple-maps.php` to include your application's authentication middleware. For example, if your app already uses Sanctum, set `'api_middleware' => ['api', 'auth:sanctum']`. This setting applies to all three routes.
+
+### Restrict MapKit JS tokens to your site
+
+A MapKit JS token without an `origin` claim works on any website. Set `APPLE_MAPS_TOKEN_ORIGIN` to the scheme and host your pages are served from, such as `https://example.com`, and Apple only accepts the token from that origin. The setting applies to the token route and to `AppleMaps::getIntermediateToken()`. You can also pass an origin directly.
+
+```php
+use Inventas\AppleMaps\Facades\AppleMaps;
+
+$token = AppleMaps::getIntermediateToken(origin: 'https://example.com');
+```
 
 If your deployment caches configuration and routes, rebuild the configuration cache before you rebuild the route cache. Check the active middleware and paths with this command.
 
